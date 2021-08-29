@@ -35,10 +35,20 @@ function App() {
     setBirthdayList(() => [...birthdayList, birthday]);
   };
 
+  const deleteBirthday = (id) => {
+    const updatedBirthdayList = birthdayList.filter(
+      (birthday) => birthday.id !== id
+    );
+    setBirthdayList([...updatedBirthdayList]);
+  };
+
   return (
     <div className="App">
       <BirthdayForm onAddBirthday={addBirthday} />
-      <BirthdayList birthdayList={birthdayList} />
+      <BirthdayList
+        birthdayList={birthdayList}
+        onDeleteBirthday={deleteBirthday}
+      />
     </div>
   );
 }
