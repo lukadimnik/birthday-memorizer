@@ -1,53 +1,63 @@
-import "./App.css";
-import BirthdayForm from "./components/BirthdayForm";
-import BirthdayList from "./components/BirthdayList";
-import { useState } from "react";
+import './App.css';
+import BirthdayForm from './components/BirthdayForm';
+import BirthdayList from './components/BirthdayList';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function App() {
-  const [birthdayList, setBirthdayList] = useState([
-    {
-      id: 1,
-      firstName: "Riikka",
-      lastName: "Dimnik",
-      birthday: "11-09-1987",
-    },
-    {
-      id: 2,
-      firstName: "Frida",
-      lastName: "Dimnik",
-      birthday: "14-08-2019",
-    },
-    {
-      id: 3,
-      firstName: "Sofia",
-      lastName: "Dimnik",
-      birthday: "28-05-2021",
-    },
-    {
-      id: 4,
-      firstName: "Luka",
-      lastName: "Dimnik",
-      birthday: "26-11-1988",
-    },
-  ]);
+  const [birthdayList, setBirthdayList] = useState([]);
 
-  const addBirthday = (birthday) => {
-    setBirthdayList(() => [...birthdayList, birthday]);
+  const fetchBirthdays = async () => {
+    const response = await axios.get('http://localhost:3001/birthdays');
+    const data = response.data;
+    setBirthdayList(data);
   };
 
-  const deleteBirthday = (id) => {
+  const deleteBirthdayHandler = (id) => {
+    axios.delete(`http://localhost:3001/birthdays/${id}`);
     const updatedBirthdayList = birthdayList.filter(
       (birthday) => birthday.id !== id
     );
     setBirthdayList([...updatedBirthdayList]);
   };
 
+  const addBirthday = (birthday) => {
+    setBirthdayList((oldState) => [...oldState, birthday]);
+
+    axios
+      .post('http://localhost:3001/birthdays', {
+        id: birthday.randomNumber,
+        firstName: birthday.firstName,
+        lastName: birthday.lastName,
+        birthday: birthday.birthday,
+      })
+      .then((res) => setBirthdayList(birthdayList.concat(res.data)))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchBirthdays();
+  }, []);
+
+  const editHandler = (newBirthday) => {
+    const filteredList = birthdayList.filter(
+      (birthday) => birthday.id !== newBirthday.id
+    );
+    const newBirthdayList = [...filteredList, newBirthday];
+    setBirthdayList(newBirthdayList);
+    axios
+      .put(`http://localhost:3001/birthdays/${newBirthday.id}`, newBirthday)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div className="App">
+    <div className='App'>
       <BirthdayForm onAddBirthday={addBirthday} />
       <BirthdayList
         birthdayList={birthdayList}
-        onDeleteBirthday={deleteBirthday}
+        onDeleteBirthday={deleteBirthdayHandler}
+        onEdit={editHandler}
       />
     </div>
   );

@@ -1,7 +1,7 @@
-import React from "react";
-import BirthdayListItem from "./BirthdayListItem";
+import React, { useState } from 'react';
+import BirthdayListItem from './BirthdayListItem';
 
-const birthdayList = (props) => {
+const BirthdayList = (props) => {
   const listOfBirthdays = props.birthdayList.map((birthday) => (
     <BirthdayListItem
       key={birthday.id}
@@ -10,12 +10,16 @@ const birthdayList = (props) => {
       lastName={birthday.lastName}
       birthday={birthday.birthday}
       onDeleteBirthday={props.onDeleteBirthday}
+      onEdit={props.onEdit}
+      birthdayObject={birthday}
     />
   ));
 
-  console.log("birthdayList: ", birthdayList);
-
-  return <ul>{listOfBirthdays}</ul>;
+  return (
+    <div>
+      <ul>{listOfBirthdays}</ul>
+    </div>
+  );
 };
 
-export default birthdayList;
+export default BirthdayList;

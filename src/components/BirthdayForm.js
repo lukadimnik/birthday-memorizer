@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const BirthdayForm = (props) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const addBirthdayHandle = (event) => {
     event.preventDefault();
     let randomNumber = Math.floor(Math.random() * 10000 + 1);
-    let newBirthday = {
+    const newBirthday = {
       id: randomNumber,
       firstName: firstName,
       lastName: lastName,
       birthday: birthday,
     };
     props.onAddBirthday(newBirthday);
-    console.log(newBirthday);
+    setFirstName('');
+    setLastName('');
+    setBirthday('');
   };
 
   const firstNameChangeHandler = (event) => {
@@ -35,25 +37,25 @@ const BirthdayForm = (props) => {
       <h1>Add a birthday!</h1>
       <form onSubmit={addBirthdayHandle}>
         <input
-          id="firstName"
-          type="text"
+          id='firstName'
+          type='text'
           value={firstName}
           onChange={firstNameChangeHandler}
         />
         <input
-          id="lastName"
-          type="text"
+          id='lastName'
+          type='text'
           value={lastName}
           onChange={lastNameChangeHandler}
         />
         <input
-          id="birthday"
-          type="date"
+          id='birthday'
+          type='date'
           value={birthday}
           onChange={birthdayChangeHandler}
         />
 
-        <button type="submit">Save</button>
+        <button type='submit'>Save</button>
       </form>
     </div>
   );
