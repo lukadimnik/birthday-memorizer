@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [birthdayList, setBirthdayList] = useState([]);
+  const what = useState('halo');
+  console.log(what);
 
   const fetchBirthdays = async () => {
     const response = await axios.get('http://localhost:3001/birthdays');

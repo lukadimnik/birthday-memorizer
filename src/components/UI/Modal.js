@@ -10,6 +10,7 @@ const OVERLAY_STYLE = {
   transform: 'translate(-50%, -50%)',
   backgroundColor: 'rgba(0,0,0,.7)',
   zIndex: 1000,
+  border: '1px solid red',
 };
 
 const MODAL_STYLES = {
@@ -20,6 +21,7 @@ const MODAL_STYLES = {
   backgroundColor: '#FFF',
   padding: '50px',
   zIndex: 1000,
+  border: '1px solid red',
 };
 
 const Modal = ({ children, closeModal }) => {

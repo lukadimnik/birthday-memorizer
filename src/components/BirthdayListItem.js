@@ -24,11 +24,13 @@ const BirthdayListItem = (props) => {
       <button onClick={closeModalHandler}>Edit</button>
       <button onClick={deleteBirthdayHandler}>Delete</button>
       {showModal && (
-        <EditBirthdayModal
-          birthday={props.birthdayObject}
-          onEdit={onEdit}
-          onClose={closeModalHandler}
-        />
+        <Modal closeModal={closeModalHandler}>
+          <EditBirthdayModal
+            birthday={props.birthdayObject}
+            onEdit={onEdit}
+            onClose={closeModalHandler}
+          />
+        </Modal>
       )}
     </li>
   );
