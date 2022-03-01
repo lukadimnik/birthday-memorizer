@@ -28,6 +28,19 @@
   color: #61dafb;
 }
 
+.tableContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+table {
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 12px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

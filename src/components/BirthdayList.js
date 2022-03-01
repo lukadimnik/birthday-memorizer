@@ -18,8 +18,15 @@ const BirthdayList = (props) => {
     ));
 
   return (
-    <div>
-      <ul>{listOfBirthdays}</ul>
+    <div className='tableContainer'>
+      <table>
+        <thead>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Birthday</th>
+        </thead>
+        <tbody>{listOfBirthdays}</tbody>
+      </table>
     </div>
   );
 };

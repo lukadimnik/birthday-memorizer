@@ -19,10 +19,17 @@ const BirthdayListItem = (props) => {
   };
 
   return (
-    <li>
-      {`${props.firstName} ${props.lastName} ${props.birthday}   `}
-      <button onClick={closeModalHandler}>Edit</button>
-      <button onClick={deleteBirthdayHandler}>Delete</button>
+    <tr>
+      <td>{props.firstName}</td>
+      <td>{props.lastName}</td>
+      <td>{props.birthday}</td>
+      <td>
+        <button onClick={closeModalHandler}>Edit</button>
+      </td>
+      <td>
+        <button onClick={deleteBirthdayHandler}>Delete</button>
+      </td>
+
       {showModal && (
         <Modal closeModal={closeModalHandler}>
           <EditBirthdayModal
@@ -32,7 +39,7 @@ const BirthdayListItem = (props) => {
           />
         </Modal>
       )}
-    </li>
+    </tr>
   );
 };
 
