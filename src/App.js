@@ -1,8 +1,13 @@
 import './App.css';
 import BirthdayForm from './components/BirthdayForm';
 import BirthdayList from './components/BirthdayList';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import {
+  createBirthday,
+  deleteBirthday,
+  getAllBirthdays,
+  updateBirthday,
+} from './birthdayService';
 
 function App() {
   const [birthdayList, setBirthdayList] = useState([]);
@@ -10,13 +15,13 @@ function App() {
   console.log(what);
 
   const fetchBirthdays = async () => {
-    const response = await axios.get('http://localhost:3001/birthdays');
+    const response = await getAllBirthdays();
     const data = response.data;
     setBirthdayList(data);
   };
 
   const deleteBirthdayHandler = (id) => {
-    axios.delete(`http://localhost:3001/birthdays/${id}`);
+    deleteBirthday(id);
     const updatedBirthdayList = birthdayList.filter(
       (birthday) => birthday.id !== id
     );
@@ -26,13 +31,12 @@ function App() {
   const addBirthday = (birthday) => {
     setBirthdayList((oldState) => [...oldState, birthday]);
 
-    axios
-      .post('http://localhost:3001/birthdays', {
-        id: birthday.randomNumber,
-        firstName: birthday.firstName,
-        lastName: birthday.lastName,
-        birthday: birthday.birthday,
-      })
+    createBirthday({
+      id: birthday.randomNumber,
+      firstName: birthday.firstName,
+      lastName: birthday.lastName,
+      birthday: birthday.birthday,
+    })
       .then((res) => setBirthdayList(birthdayList.concat(res.data)))
       .catch((err) => console.log(err));
   };
@@ -47,8 +51,7 @@ function App() {
     );
     const newBirthdayList = [...filteredList, newBirthday];
     setBirthdayList(newBirthdayList);
-    axios
-      .put(`http://localhost:3001/birthdays/${newBirthday.id}`, newBirthday)
+    updateBirthday(newBirthday.id, newBirthday)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
