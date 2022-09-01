@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = '/api/birthdays';
+const baseUrl = 'http://localhost:3001/api/birthdays';
 
 export const getBirthday = (id) => {
   return axios.get(`${baseUrl}/${id}`);

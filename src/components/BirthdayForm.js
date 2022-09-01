@@ -36,24 +36,33 @@ const BirthdayForm = (props) => {
     <div>
       <h1>Add a birthday!</h1>
       <form onSubmit={addBirthdayHandle}>
-        <input
-          id='firstName'
-          type='text'
-          value={firstName}
-          onChange={firstNameChangeHandler}
-        />
-        <input
-          id='lastName'
-          type='text'
-          value={lastName}
-          onChange={lastNameChangeHandler}
-        />
-        <input
-          id='birthday'
-          type='date'
-          value={birthday}
-          onChange={birthdayChangeHandler}
-        />
+        <label>
+          Firstname:
+          <input
+            id='firstName'
+            type='text'
+            value={firstName}
+            onChange={firstNameChangeHandler}
+          />
+        </label>
+        <label>
+          Lastname:
+          <input
+            id='lastName'
+            type='text'
+            value={lastName}
+            onChange={lastNameChangeHandler}
+          />
+        </label>
+        <label>
+          Birthdate:
+          <input
+            id='birthday'
+            type='date'
+            value={birthday}
+            onChange={birthdayChangeHandler}
+          />
+        </label>
 
         <button type='submit'>Save</button>
       </form>
