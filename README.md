@@ -1,3 +1,7 @@
+# Summary
+
+Repository for the front-end code written in react for the birthday memorizer application.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
