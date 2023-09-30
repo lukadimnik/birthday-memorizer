@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Birthday } from '../models/interfaces';
 
-const EditBirthdayModal = (props) => {
+interface EditBirthdayModalProps {
+  birthday: Birthday;
+  onEdit: (newBirthday: Birthday) => void;
+  onClose: () => void;
+}
+
+const EditBirthdayModal = (props: EditBirthdayModalProps) => {
   const [firstName, setFirstName] = useState(props.birthday.firstName);
   const [lastName, setLastName] = useState(props.birthday.lastName);
   const [birthday, setBirthday] = useState(props.birthday.birthday);
 
-  const editBirthdayHandle = (event) => {
+  const editBirthdayHandle = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     let newBirthday = {
@@ -17,16 +24,16 @@ const EditBirthdayModal = (props) => {
     props.onEdit(newBirthday);
   };
 
-  const firstNameChangeHandler = (event) => {
-    setFirstName(event.target.value);
+  const firstNameChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setFirstName(event.currentTarget.value);
   };
 
-  const lastNameChangeHandler = (event) => {
-    setLastName(event.target.value);
+  const lastNameChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setLastName(event.currentTarget.value);
   };
 
-  const birthdayChangeHandler = (event) => {
-    setBirthday(event.target.value);
+  const birthdayChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setBirthday(event.currentTarget.value);
   };
 
   return (
