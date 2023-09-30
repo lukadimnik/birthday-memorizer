@@ -33,7 +33,6 @@ function App() {
     setBirthdayList((oldState) => [...oldState, birthday]);
 
     createBirthday({
-      id: birthday.id,
       firstName: birthday.firstName,
       lastName: birthday.lastName,
       birthday: birthday.birthday,

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Birthday, NewBirthday } from './models/interfaces';
+import { NewBirthday } from './models/interfaces';
 const baseUrl = 'http://localhost:3001/api/birthdays';
 
 export const getBirthday = (id: number) => {
@@ -10,7 +10,7 @@ export const getAllBirthdays = () => {
   return axios.get(baseUrl);
 };
 
-export const createBirthday = (newBirthday: Birthday) => {
+export const createBirthday = (newBirthday: NewBirthday) => {
   return axios.post(baseUrl, newBirthday);
 };
 
