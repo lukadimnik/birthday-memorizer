@@ -12,8 +12,6 @@ import { Birthday } from './models/interfaces';
 
 function App() {
   const [birthdayList, setBirthdayList] = useState<Birthday[]>([]);
-  const what = useState('halo');
-  console.log(what);
 
   const fetchBirthdays = async () => {
     const response = await getAllBirthdays();
