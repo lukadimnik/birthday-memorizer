@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const BirthdayForm = (props) => {
   const [firstName, setFirstName] = useState('');

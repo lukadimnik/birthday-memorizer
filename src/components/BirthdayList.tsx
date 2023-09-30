@@ -1,8 +1,18 @@
-import React from 'react';
 import BirthdayListItem from './BirthdayListItem';
+import { Birthday } from '../models/interfaces';
 
-const BirthdayList = (props) => {
-  const listOfBirthdays = props.birthdayList
+interface BirthdayListProps {
+  birthdayList: Birthday[];
+  onDeleteBirthday: (id: number) => void;
+  onEdit: (birthday: Birthday) => void;
+}
+
+const BirthdayList = ({
+  birthdayList,
+  onDeleteBirthday,
+  onEdit,
+}: BirthdayListProps) => {
+  const listOfBirthdays = birthdayList
     .sort()
     .map((birthday) => (
       <BirthdayListItem
@@ -11,8 +21,8 @@ const BirthdayList = (props) => {
         firstName={birthday.firstName}
         lastName={birthday.lastName}
         birthday={birthday.birthday}
-        onDeleteBirthday={props.onDeleteBirthday}
-        onEdit={props.onEdit}
+        onDeleteBirthday={onDeleteBirthday}
+        onEdit={onEdit}
         birthdayObject={birthday}
       />
     ));
