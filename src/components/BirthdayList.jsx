@@ -21,9 +21,11 @@ const BirthdayList = (props) => {
     <div className='tableContainer'>
       <table>
         <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Birthday</th>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Birthday</th>
+          </tr>
         </thead>
         <tbody>{listOfBirthdays}</tbody>
       </table>
