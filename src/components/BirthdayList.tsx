@@ -17,10 +17,6 @@ const BirthdayList = ({
     .map((birthday) => (
       <BirthdayListItem
         key={birthday.id}
-        id={birthday.id}
-        firstName={birthday.firstName}
-        lastName={birthday.lastName}
-        birthday={birthday.birthday}
         onDeleteBirthday={onDeleteBirthday}
         onEdit={onEdit}
         birthdayObject={birthday}

@@ -1,11 +1,16 @@
 import { useState } from 'react';
+import { Birthday } from '../models/interfaces';
 
-const BirthdayForm = (props) => {
+interface BirthdayFormProps {
+  onAddBirthday: (birthday: Birthday) => void;
+}
+
+const BirthdayForm = ({ onAddBirthday }: BirthdayFormProps) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  const addBirthdayHandle = (event) => {
+  const addBirthdayHandle = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let randomNumber = Math.floor(Math.random() * 10000 + 1);
     const newBirthday = {
@@ -14,22 +19,22 @@ const BirthdayForm = (props) => {
       lastName: lastName,
       birthday: birthday,
     };
-    props.onAddBirthday(newBirthday);
+    onAddBirthday(newBirthday);
     setFirstName('');
     setLastName('');
     setBirthday('');
   };
 
-  const firstNameChangeHandler = (event) => {
-    setFirstName(event.target.value);
+  const firstNameChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setFirstName(event.currentTarget.value);
   };
 
-  const lastNameChangeHandler = (event) => {
-    setLastName(event.target.value);
+  const lastNameChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setLastName(event.currentTarget.value);
   };
 
-  const birthdayChangeHandler = (event) => {
-    setBirthday(event.target.value);
+  const birthdayChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setBirthday(event.currentTarget.value);
   };
 
   return (
