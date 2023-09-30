@@ -1,28 +1,44 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import EditBirthdayModal from './EditBirthdayModal';
 import Modal from './UI/Modal';
+import { Birthday } from '../models/interfaces';
 
-const BirthdayListItem = (props) => {
+interface BirthdayListItemProps {
+  birthdayObject: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    birthday: string;
+  };
+  onDeleteBirthday: (id: number) => void;
+  onEdit: (newBirthday: Birthday) => void;
+}
+
+const BirthdayListItem = ({
+  birthdayObject,
+  onDeleteBirthday,
+  onEdit,
+}: BirthdayListItemProps) => {
   const [showModal, setShowModal] = useState(false);
 
   const deleteBirthdayHandler = () => {
-    props.onDeleteBirthday(props.id);
+    onDeleteBirthday(birthdayObject.id);
   };
 
   const closeModalHandler = () => {
     setShowModal((oldState) => !oldState);
   };
 
-  const onEdit = (newBirthday) => {
-    props.onEdit(newBirthday);
+  const onEditBirthday = (newBirthday: Birthday) => {
+    onEdit(newBirthday);
     setShowModal(false);
   };
 
   return (
     <tr>
-      <td>{props.firstName}</td>
-      <td>{props.lastName}</td>
-      <td>{props.birthday}</td>
+      <td>{birthdayObject.firstName}</td>
+      <td>{birthdayObject.lastName}</td>
+      <td>{birthdayObject.birthday}</td>
       <td>
         <button onClick={closeModalHandler}>Edit</button>
       </td>
@@ -33,8 +49,8 @@ const BirthdayListItem = (props) => {
       {showModal && (
         <Modal closeModal={closeModalHandler}>
           <EditBirthdayModal
-            birthday={props.birthdayObject}
-            onEdit={onEdit}
+            birthday={birthdayObject}
+            onEdit={onEditBirthday}
             onClose={closeModalHandler}
           />
         </Modal>
