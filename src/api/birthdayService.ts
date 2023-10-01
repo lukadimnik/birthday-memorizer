@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { NewBirthday } from './models/interfaces';
+import { NewBirthday } from '../models/interfaces';
 const baseUrl = 'http://localhost:3001/api/birthdays';
 
 export const getBirthday = (id: number) => {
@@ -21,3 +21,7 @@ export const updateBirthday = (id: number, newBirthday: NewBirthday) => {
 export const deleteBirthday = (id: number) => {
   return axios.delete(`${baseUrl}/${id}`);
 };
+
+export const login = (username: string, password: string) => {
+  return axios.post('http://localhost:3001/api/login', { username, password });
+}

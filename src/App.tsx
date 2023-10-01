@@ -7,7 +7,7 @@ import {
   deleteBirthday,
   getAllBirthdays,
   updateBirthday,
-} from './birthdayService';
+} from './api/birthdayService';
 import { Birthday } from './models/interfaces';
 
 function App() {

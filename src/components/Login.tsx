@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Login.css'
+import { login } from '../api/birthdayService';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -7,10 +8,13 @@ const Login = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Here, you can add your logic to authenticate the user with the entered username and password
-    // For a basic example, we'll just log the values to the console
     console.log('Username:', username);
     console.log('Password:', password);
+    login(username, password)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   };
 
   return (
