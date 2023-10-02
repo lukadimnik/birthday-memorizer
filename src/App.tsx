@@ -9,9 +9,18 @@ import {
   updateBirthday,
 } from './api/birthdayService';
 import { Birthday } from './models/interfaces';
+import { useSignOut } from 'react-auth-kit';
+import { useNavigate } from 'react-router';
 
 function App() {
   const [birthdayList, setBirthdayList] = useState<Birthday[]>([]);
+
+  const signOut = useSignOut();
+  const navigate = useNavigate();
+  const logout = () => {
+    signOut();
+    navigate('/login');
+  };
 
   const fetchBirthdays = async () => {
     const response = await getAllBirthdays();
@@ -56,6 +65,7 @@ function App() {
 
   return (
     <div className='App'>
+      <button onClick={logout}>Sign out</button>
       <h1>Happy Birthday!</h1>
       <BirthdayForm onAddBirthday={addBirthday} />
       <BirthdayList

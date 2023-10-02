@@ -1,19 +1,28 @@
 import { useState } from 'react';
 import './Login.css'
 import { login } from '../api/birthdayService';
+import { useSignIn } from 'react-auth-kit';
+import { useNavigate } from 'react-router';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const signIn = useSignIn();
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
     login(username, password)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        signIn({
+          token: res.data.token,
+          expiresIn: 3600,
+          tokenType: 'Bearer',
+          authState: {
+            username: res.data.username,
+          },
+        });
+        navigate('/');
       })
   };
 
