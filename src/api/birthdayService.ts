@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { NewBirthday } from '../models/interfaces';
+import Cookies from 'js-cookie';
 const baseUrl = 'http://localhost:3001/api/birthdays';
 
 export const getBirthday = (id: number) => {
@@ -11,17 +12,23 @@ export const getAllBirthdays = () => {
 };
 
 export const createBirthday = (newBirthday: NewBirthday) => {
-  return axios.post(baseUrl, newBirthday);
+  return axios.post(baseUrl, newBirthday, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const updateBirthday = (id: number, newBirthday: NewBirthday) => {
-  return axios.put(`${baseUrl}/${id}`, newBirthday);
+  return axios.put(`${baseUrl}/${id}`, newBirthday, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const deleteBirthday = (id: number) => {
-  return axios.delete(`${baseUrl}/${id}`);
+  return axios.delete(`${baseUrl}/${id}`, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const login = (username: string, password: string) => {
   return axios.post('http://localhost:3001/api/login', { username, password });
-}
+};
