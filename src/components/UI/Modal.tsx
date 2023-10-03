@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const OVERLAY_STYLE = {
+const OVERLAY_STYLE: React.CSSProperties = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -13,7 +13,7 @@ const OVERLAY_STYLE = {
   border: '1px solid red',
 };
 
-const MODAL_STYLES = {
+const MODAL_STYLES: React.CSSProperties = {
   position: 'fixed',
   top: '50%',
   left: '50%',
@@ -33,7 +33,7 @@ const Modal = ({ children, closeModal }) => {
         {children}
       </div>
     </React.Fragment>,
-    document.getElementById('portal')
+    document.getElementById('portal') as Element
   );
 };
 
