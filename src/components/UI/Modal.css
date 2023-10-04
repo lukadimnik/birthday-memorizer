@@ -1,0 +1,65 @@
+/* Styling for the modal overlay */
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Adjust the z-index to be above your content */
+  }
+  
+  /* Styling for the modal content */
+  .ReactModal__Content {
+    opacity: 0;
+    transform: translateY(-20px); /* Slide in from the top */
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 80%; /* Adjust the width as needed */
+    position: relative;
+    z-index: 1001; /* Make sure it's above the overlay */
+  }
+  
+  /* Styling for the close button */
+  .ReactModal__Content button {
+    background-color: #007BFF; /* Blue button color */
+    color: #fff; /* Text color */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  /* Hover effect for the close button */
+  .ReactModal__Content button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Make the modal and overlay visible when open */
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+  
+  .ReactModal__Content--after-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Hide the modal and overlay when closed */
+  .ReactModal__Overlay--before-close {
+    opacity: 0;
+  }
+  
+  .ReactModal__Content--before-close {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  
