@@ -11,9 +11,19 @@ import {
 import { Birthday } from './models/interfaces';
 import { useSignOut } from 'react-auth-kit';
 import { useNavigate } from 'react-router';
+import CustomModal from './components/UI/Modal';
 
 function App() {
   const [birthdayList, setBirthdayList] = useState<Birthday[]>([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const signOut = useSignOut();
   const navigate = useNavigate();
@@ -73,6 +83,11 @@ function App() {
         onDeleteBirthday={deleteBirthdayHandler}
         onEdit={editHandler}
       />
+      <button onClick={openModal}>Open Modal</button>
+      <CustomModal isOpen={modalIsOpen} closeModal={closeModal} title='Whatever'>
+        <p>Modal Body</p>
+        <p>Modal content</p>
+      </CustomModal>
     </div>
   );
 }
