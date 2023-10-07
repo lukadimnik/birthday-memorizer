@@ -19,7 +19,7 @@
     opacity: 0;
     transform: translateY(-20px); /* Slide in from the top */
     transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
-    background-color: #fff; /* White background */
+    background-color: #656262 !important; /* White background */
     padding: 20px;
     border-radius: 5px;
     max-width: 80%; /* Adjust the width as needed */
