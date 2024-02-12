@@ -47,7 +47,11 @@ const BirthdayListItem = ({
       </td>
 
       {showModal && (
-        <Modal closeModal={closeModalHandler}>
+        <Modal
+          closeModal={closeModalHandler}
+          title='Edit Birthday'
+          isOpen={false}
+        >
           <EditBirthdayModal
             birthday={birthdayObject}
             onEdit={onEditBirthday}
