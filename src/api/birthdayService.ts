@@ -1,34 +1,36 @@
 import axios from 'axios';
 import { NewBirthday } from '../models/interfaces';
 import Cookies from 'js-cookie';
-
 const baseUrl = '/api/birthdays';
 
-const api = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    Authorization: `Bearer ${Cookies.get('_auth')}`,
-  },
-});
-
 export const getBirthday = (id: number) => {
-  return api.get(`/${id}`);
+  return axios.get(`${baseUrl}/${id}`, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const getAllBirthdays = () => {
-  return api.get('/');
+  return axios.get(baseUrl, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const createBirthday = (newBirthday: NewBirthday) => {
-  return api.post('/', newBirthday);
+  return axios.post(baseUrl, newBirthday, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const updateBirthday = (id: number, newBirthday: NewBirthday) => {
-  return api.put(`/${id}`, newBirthday);
+  return axios.put(`${baseUrl}/${id}`, newBirthday, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const deleteBirthday = (id: number) => {
-  return api.delete(`/${id}`);
+  return axios.delete(`${baseUrl}/${id}`, {
+    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
+  });
 };
 
 export const login = (username: string, password: string) => {
