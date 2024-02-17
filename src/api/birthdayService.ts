@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NewBirthday } from '../models/interfaces';
 import Cookies from 'js-cookie';
-const baseUrl = '/api/birthdays';
+const baseUrl = 'http://localhost:3000/api/birthdays';
 
 export const getBirthday = (id: number) => {
   return axios.get(`${baseUrl}/${id}`, {
@@ -34,5 +34,5 @@ export const deleteBirthday = (id: number) => {
 };
 
 export const login = (username: string, password: string) => {
-  return axios.post('/api/login', { username, password });
+  return axios.post('http://localhost:3000/api/login', { username, password });
 };
