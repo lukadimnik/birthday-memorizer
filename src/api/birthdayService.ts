@@ -3,38 +3,41 @@ import { NewBirthday } from '../models/interfaces';
 import Cookies from 'js-cookie';
 const apiUrl = import.meta.env.VITE_API_URL || '';
 
-const baseUrl = `${apiUrl}/api/birthdays`;
+const api = axios.create({
+  baseURL: `${apiUrl}/api`,
+});
+
+api.interceptors.request.use((config) => {
+  const token = Cookies.get('_auth');
+  
+  // If the token is present, set it on the Authorization header
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
+  return config;
+});
 
 export const getBirthday = (id: number) => {
-  return axios.get(`${baseUrl}/${id}`, {
-    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
-  });
+  return api.get(`/birthdays/${id}`);
 };
 
 export const getAllBirthdays = () => {
-  return axios.get(baseUrl, {
-    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
-  });
+  return api.get('/birthdays');
 };
 
 export const createBirthday = (newBirthday: NewBirthday) => {
-  return axios.post(baseUrl, newBirthday, {
-    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
-  });
+  return api.post('/birthdays', newBirthday);
 };
 
 export const updateBirthday = (id: number, newBirthday: NewBirthday) => {
-  return axios.put(`${baseUrl}/${id}`, newBirthday, {
-    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
-  });
+  return api.put(`/birthdays/${id}`, newBirthday);
 };
 
 export const deleteBirthday = (id: number) => {
-  return axios.delete(`${baseUrl}/${id}`, {
-    headers: { Authorization: `Bearer ${Cookies.get('_auth')}` },
-  });
+  return api.delete(`/birthdays/${id}`);
 };
 
 export const login = (username: string, password: string) => {
-  return axios.post(`${apiUrl}/api/login`, { username, password });
+  return api.post('/login', { username, password });
 };
